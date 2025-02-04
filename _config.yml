@@ -116,7 +116,7 @@ comments:
   # utterances settings › https://utteranc.es/
   utterances:
     repo: # <gh-username>/<repo>
-    issue_term: title # < url | pathname | title | ...>
+    issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
   giscus:
     repo: 0xGhazy/0xGhazy.github.io # <gh-username>/<repo>
