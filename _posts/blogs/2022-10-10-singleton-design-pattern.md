@@ -51,8 +51,8 @@ As always, nothing is perfect, Singleton has a problem with violating the princi
 ```python
 class MainClass:
 
-    def __init__(self):
-        print("Create New Instance of MainClass")
+	def __init__(self):
+		print("Create New Instance of MainClass")
 
 object2 = MainClass()
 object1 = MainClass()
@@ -79,18 +79,18 @@ First we have the following steps to implement the Singleton:
 ```python
 class Singleton(object):
 	# Flag variable to check if instance is created or not
-    _instance = None
+	_instance = None
 
-    def __new__(cls):
-	    # Check if we have any Singleton instance in memory
-        if cls._instance is None:
-            print('Creating the Singleton object')
+	def __new__(cls):
+		# Check if we have any Singleton instance in memory
+		if cls._instance is None:
+			print('Creating the Singleton object')
 			# Creating an instance of the Singleton class
-            cls._instance = super(Singleton, cls).__new__(cls)
-            # Put any initialization here.
-            # Here we Overwrite the __init__ method
-        # Return the new instance
-        return cls._instance
+ 			cls._instance = super(Singleton, cls).__new__(cls)
+			# Put any initialization here.
+ 			# Here we Overwrite the __init__ method
+		# Return the new instance
+		eturn cls._instance
 
 o1 = Singleton()
 o2 = Singleton()
