@@ -6,8 +6,7 @@ layout: post
 tags: [git]
 category: [Blog]
 image:
-  path: https://www.biteinteractive.com/wp-content/uploads/2021/05/git-vs-github.png
-  alt: Image from [Here](https://www.biteinteractive.com/wp-content/uploads/2021/05/git-vs-github.png)
+  path: /assets/img/blogs/git-and-github-thumbnail.png
 ---
 
 <br>
@@ -62,7 +61,7 @@ Let's start with creating a new simple project.
 
 ```python
 def add_two_numbers(number1: int, number2: int) -> int:
-	"""Function to calculate the sum of two integer numbers"""
+    """Function to calculate the sum of two integer numbers"""
     return number1 + number2
 
 

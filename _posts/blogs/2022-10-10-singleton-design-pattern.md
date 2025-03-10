@@ -27,11 +27,11 @@ here we can use one of the creational design patterns called Singleton design pa
 
 ### What is the design patterns?
 
-**Design patterns** are typical solutions to commonly occurring problems in software design. They are like pre-made blueprints that you can customize to solve a recurring design problem in your code.
+**Design patterns** are typical solutions to commonly occurring problems in software design. They are like pre-made blueprints that you can customize to solve a recurring design problem in your code.
 
 Our learning and use of design patterns, improve our view of problems and strengthens our skill in solving design-related software problems.
 
-**Singleton** is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
+**Singleton** is a creational design pattern that lets you ensure that a class has only one instance, while providing a global access point to this instance.
 
 ### Singleton Pros
 
@@ -86,9 +86,9 @@ class Singleton(object):
 		if cls._instance is None:
 			print('Creating the Singleton object')
 			# Creating an instance of the Singleton class
- 			cls._instance = super(Singleton, cls).__new__(cls)
+			cls._instance = super(Singleton, cls).__new__(cls)
 			# Put any initialization here.
- 			# Here we Overwrite the __init__ method
+			# Here we Overwrite the __init__ method
 		# Return the new instance
 		eturn cls._instance
 
