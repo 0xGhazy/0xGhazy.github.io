@@ -6,7 +6,7 @@ layout: post
 tags: [backend, python, rest]
 category: [Backend]
 image:
-  path: /assets/images/blogs/grad3-thumbnail.png
+  path: /assets/img/blogs/grad3-thumbnail.png
 ---
 
 <br>
