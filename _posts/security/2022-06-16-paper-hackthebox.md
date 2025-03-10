@@ -6,7 +6,7 @@ layout: post
 tags: [HackTheBox]
 category: [Cybersecurity]
 image:
-    path: /assets/img/security/late.png
+    path: /assets/img/security/paper.png
 ---
 
 <br>
