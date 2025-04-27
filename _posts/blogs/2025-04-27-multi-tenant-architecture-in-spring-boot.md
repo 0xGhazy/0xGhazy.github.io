@@ -1,12 +1,12 @@
 ---
-created: 2025-04-26
+created: 2025-04-27
 title: "Mastering Multi-Tenancy Architecture in Spring Boot"
 description: "Explore the concept of multi-tenant applications, their significance in modern software development, and step-by-step guidance to implement them using Spring Boot"
 layout: post
 tags: [multi-tenancy, spring-boot]
 category: [Backend, Architecture]
 image:
-    path: /assets/img/blogs/head_first_object_oriented_analysis_and_design.jpg
+    path: /assets/img/blogs/multi-tenancy/multi-tenancy-post.png
 ---
 
 <br>
