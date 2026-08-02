@@ -6,7 +6,7 @@ layout: post
 tags: [git]
 category: [Blog]
 image:
-  path: /assets/img/blogs/git-and-github-thumbnail.png
+  path: https://github.com/user-attachments/assets/7c37c801-a012-4633-8155-a200524d5619
 ---
 
 <br>
