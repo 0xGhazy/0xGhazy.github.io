@@ -6,7 +6,7 @@ layout: post
 tags: [JWT, Python]
 category: [Backend]
 image:
-  path: /assets/img/blogs/grad4-thumbnail.png
+  path: /assets/img/blogs/grad4-thumbnail.webp
 ---
 
 <br>

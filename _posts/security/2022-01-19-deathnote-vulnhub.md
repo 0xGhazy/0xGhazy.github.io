@@ -6,7 +6,7 @@ layout: post
 tags: [VulnHub]
 category: [Cybersecurity]
 image:
-    path: /assets/img/security/deathnote.png
+    path: /assets/img/security/deathnote.webp
 ---
 
 <br>

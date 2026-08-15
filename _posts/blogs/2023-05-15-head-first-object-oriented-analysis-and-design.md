@@ -6,7 +6,7 @@ layout: post
 tags: [OOA&D, OOP]
 category: [Object-Oriented]
 image:
-    path: /assets/img/blogs/head_first_object_oriented_analysis_and_design.jpg
+    path: /assets/img/blogs/head_first_object_oriented_analysis_and_design.webp
 ---
 
 <br>
