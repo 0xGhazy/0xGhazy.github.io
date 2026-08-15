@@ -6,7 +6,7 @@ layout: post
 tags: [singleton]
 category: [Design Patterns]
 image:
-  path: /assets/img/blogs/singleton-design-pattern.png
+  path: /assets/img/blogs/singleton-design-pattern.webp
 ---
 
 <br>

@@ -6,7 +6,7 @@ layout: post
 tags: [multi-tenancy, spring-boot]
 category: [Backend, Architecture]
 image:
-    path: /assets/img/blogs/multi-tenancy/multi-tenancy-post.png
+    path: /assets/img/blogs/multi-tenancy/multi-tenancy-post.webp
 ---
 
 <br>
@@ -34,8 +34,8 @@ Let’s say you're using **`Zoho Books`** to manage your company's finances. Or 
 > 💭 Do you think Zoho or Shopify creates a new application instance and deploys it for every customer or shop for every new registration? Like the following image:
 {: .prompt-warning }
 
-![One shop one app light mode image](/assets/img/blogs/multi-tenancy/one-shop-one-app-light.png){: .light }
-![One shop one app dark mode image](/assets/img/blogs/multi-tenancy/one-shop-one-app-dark.png){: .dark }
+![One shop one app light mode image](/assets/img/blogs/multi-tenancy/one-shop-one-app-light.webp){: .light }
+![One shop one app dark mode image](/assets/img/blogs/multi-tenancy/one-shop-one-app-dark.webp){: .dark }
 
 = The answer is No.
 
@@ -94,8 +94,8 @@ Here are the three most common approaches:
 
 In this approach, all tenants share the same tables (schema), and every table has the `tenant_id` to separate each tenant's rows. For this reason, it is also called **Row-Level Isolation**.
 
-![Row based isolation light image](/assets/img/blogs/multi-tenancy/row-based-isolation-light.png){: .light }
-![Row based isolation dark image](/assets/img/blogs/multi-tenancy/row-based-isolation-dark.png){: .dark }
+![Row based isolation light image](/assets/img/blogs/multi-tenancy/row-based-isolation-light.webp){: .light }
+![Row based isolation dark image](/assets/img/blogs/multi-tenancy/row-based-isolation-dark.webp){: .dark }
 
 ### Pros
 
@@ -144,8 +144,8 @@ Avoid this approach if:
 
 In this approach, each tenant has its own schema (e.g., `tenant1.users`, `tenant1.orders`, `tenant2.orders`), but all tenants share the same physical database. For this reason, it is also called **Schema-level isolation**.
 
-![schema based isolation light image](/assets/img/blogs/multi-tenancy/schema-based-isolation-light.png){: .light }
-![schema based isolation dark image](/assets/img/blogs/multi-tenancy/schema-based-isolation-dark.png){: .dark }
+![schema based isolation light image](/assets/img/blogs/multi-tenancy/schema-based-isolation-light.webp){: .light }
+![schema based isolation dark image](/assets/img/blogs/multi-tenancy/schema-based-isolation-dark.webp){: .dark }
 
 ### Pros
 
@@ -189,8 +189,8 @@ Avoid this approach if:
 
 In this approach, each tenant has their own physical database. For this reason, it is also called **Database-level isolation**.
 
-![Database based isolation light image](/assets/img/blogs/multi-tenancy/database-based-isolation-light.png){: .light }
-![Database based isolation dark image](/assets/img/blogs/multi-tenancy/database-based-isolation-dark.png){: .dark }
+![Database based isolation light image](/assets/img/blogs/multi-tenancy/database-based-isolation-light.webp){: .light }
+![Database based isolation dark image](/assets/img/blogs/multi-tenancy/database-based-isolation-dark.webp){: .dark }
 
 
 ### Pros
@@ -459,7 +459,7 @@ I have added the `note` column and inserted the schema name into it to make it e
     - Spring Data JPA
     - PostgreSQL Driver
 
-![spring initializer](/assets/img/blogs/multi-tenancy/project.png)
+![spring initializer](/assets/img/blogs/multi-tenancy/project.webp)
 
 Here is the `pom.xml` example
 

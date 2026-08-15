@@ -6,7 +6,7 @@ layout: post
 tags: [TryHackMe]
 category: [Cybersecurity]
 image:
-    path: /assets/img/security/vulnversity.png
+    path: /assets/img/security/vulnversity.webp
 ---
 
 <br>
