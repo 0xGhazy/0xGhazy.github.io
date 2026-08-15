@@ -61,12 +61,12 @@ Let's start with creating a new simple project.
 
 ```python
 def add_two_numbers(number1: int, number2: int) -> int:
-    """Function to calculate the sum of two integer numbers"""
-    return number1 + number2
+	"""Function to calculate the sum of two integer numbers"""
+	return number1 + number2
 
 
 if __name__ == '__main__':
-    print("10 + 50 = ", add_two_numbers(10, 50))
+	print("10 + 50 = ", add_two_numbers(10, 50))
 ```
 
 I Create this simple console application in a directory called `calculator`
@@ -110,14 +110,14 @@ Assume we want to add a new feature to our great project, features that make our
 
 ```python
 def add_two_numbers(number1: int, number2: int) -> int:
-    return number1 + number2
+	return number1 + number2
 
 def sub_two_numbers(number1: int, number2: int) -> int:
-    return number1 - number2
+	return number1 - number2
 
 if __name__ == '__main__':
-    print("10 + 50 = ", add_two_numbers(10, 50))
-    print("50 - 20 = ", sub_two_numbers(50, 20))
+	print("10 + 50 = ", add_two_numbers(10, 50))
+	print("50 - 20 = ", sub_two_numbers(50, 20))
 ```
 
 ![8](https://user-images.githubusercontent.com/60070427/195462479-5500d663-5711-4dcb-a864-c3140e82517c.png)
@@ -142,25 +142,25 @@ i use cat command to display file content on the console screen, let's start add
 
 ```python
 def add_two_numbers(number1: int, number2: int) -> int:
-    return number1 + number2
+	return number1 + number2
 
 def sub_two_numbers(number1: int, number2: int) -> int:
-    return number1 - number2
+	return number1 - number2
 
 def multiply_two_numbers(number1: int, number2: int) -> int:
-    return number1 * number2
+	return number1 * number2
 
 def division_two_numbers(number1: int, number2: int) -> int:
-    if number2 != 0:
-        return number1//number2
-    return "Second number can't be equals zero"
+	if number2 != 0:
+		return number1//number2
+	return "Second number can't be equals zero"
 
 
 if __name__ == '__main__':
-    print("10 + 50 = ", add_two_numbers(10, 50))
-    print("50 - 20 = ", sub_two_numbers(50, 20))
-    print("5 * 20 = ", multiply_two_numbers(5, 20))
-    print("100 - 20 = ", division_two_numbers(100, 20))
+	print("10 + 50 = ", add_two_numbers(10, 50))
+	print("50 - 20 = ", sub_two_numbers(50, 20))
+	print("5 * 20 = ", multiply_two_numbers(5, 20))
+	print("100 - 20 = ", division_two_numbers(100, 20))
 ```
 
 ![12](https://user-images.githubusercontent.com/60070427/195462497-04193e66-2fb3-463f-afca-da94d8790adf.png)

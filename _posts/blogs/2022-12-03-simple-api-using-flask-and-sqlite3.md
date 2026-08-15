@@ -63,10 +63,10 @@ from typing import List
 
 class DatabaseAPI:
 
-    def __init__(self, db_name) -> None:
-        os.chdir(os.path.dirname(__file__))
-        self._db_name = db_name
-        self._connection = self.db_connect()
+	def __init__(self, db_name) -> None:
+		os.chdir(os.path.dirname(__file__))
+		self._db_name = db_name
+		self._connection = self.db_connect()
 ```
 
 ### Database connection handler method
@@ -74,11 +74,11 @@ class DatabaseAPI:
 that returns sqlite3 connection if the connection process goes true.
 
 ```python
-    def db_connect(self) -> sqlite3:
-        try:
-            return sqlite3.connect(self._db_name)
-        except Exception as error:
-            raise Exception(f"[-] Error Message:\n{error}\n")
+	def db_connect(self) -> sqlite3:
+		try:
+			return sqlite3.connect(self._db_name)
+		except Exception as error:
+			raise Exception(f"[-] Error Message:\n{error}\n")
 ```
 
 ### Getting all books
@@ -86,10 +86,10 @@ that returns sqlite3 connection if the connection process goes true.
 Getting all books from database and `Books` table by using `SELECT *` and return list of results.
 
 ```python
-    def get_all_books(self) -> List[list]:
-        cursor = self._connection.cursor()
-        response = cursor.execute(f"SELECT * FROM Books;")
-        return list(response)
+	def get_all_books(self) -> List[list]:
+		cursor = self._connection.cursor()
+		response = cursor.execute(f"SELECT * FROM Books;")
+		return list(response)
 ```
 
 ### Getting Book by id
@@ -97,10 +97,10 @@ Getting all books from database and `Books` table by using `SELECT *` and return
 like the previous code sample but with adding the `WHERE` keyword to filter results for the passing book `id`.
 
 ```python
-    def get_book_by_id(self, id) -> List:
-        cursor = self._connection.cursor()
-        response = cursor.execute(f"SELECT * FROM Books WHERE Id = {id};")
-        return response
+	def get_book_by_id(self, id) -> List:
+		cursor = self._connection.cursor()
+		response = cursor.execute(f"SELECT * FROM Books WHERE Id = {id};")
+		return response
 ```
 
 ### Insert and update a Book
@@ -108,34 +108,34 @@ like the previous code sample but with adding the `WHERE` keyword to filter resu
 i implement 2 methods that takes a book object/dict and passing it to the `INSERT` statement then commit this action to the database, another method do the same but it perform update action using `SET` statement with the book id to update a specific book.
 
 ```python
-    def insert_book(self, book_data: dict):
-        cursor = self._connection.cursor()
-        cursor.execute(f"""
-        INSERT INTO Books (title, author, description, pages)
-	    VALUES ('{book_data['title']}',
-			    '{book_data['author']}',
-			    '{book_data['description']}',
-			    '{book_data['pages']}');""")
-        self._connection.commit()
+	def insert_book(self, book_data: dict):
+		cursor = self._connection.cursor()
+		cursor.execute(f"""
+		INSERT INTO Books (title, author, description, pages)
+		VALUES ('{book_data['title']}',
+				'{book_data['author']}',
+				'{book_data['description']}',
+				'{book_data['pages']}');""")
+		self._connection.commit()
 
-     def update_book(self, id: int, new_data: dict):
-        cursor = self._connection.cursor()
-        cursor.execute(f"""
-        UPDATE Books SET title = '{new_data['title']}',
-                         author = '{new_data['author']}',
-                         description = '{new_data['description']}',
-                         pages = '{new_data['pages']}'
-        WHERE Id = {id};""")
-        self._connection.commit()
+	 def update_book(self, id: int, new_data: dict):
+		cursor = self._connection.cursor()
+		cursor.execute(f"""
+		UPDATE Books SET title = '{new_data['title']}',
+						 author = '{new_data['author']}',
+						 description = '{new_data['description']}',
+						 pages = '{new_data['pages']}'
+		WHERE Id = {id};""")
+		self._connection.commit()
 ```
 
 ### Deleting Book by id
 
 ```python
-    def delete_book(self, id):
-        cursor = self._connection.cursor()
-        cursor.execute(f"""DELETE FROM Books WHERE Id = {id};""")
-        self._connection.commit()
+	def delete_book(self, id):
+		cursor = self._connection.cursor()
+		cursor.execute(f"""DELETE FROM Books WHERE Id = {id};""")
+		self._connection.commit()
 ```
 
 ## Put altogether
@@ -147,55 +147,55 @@ from typing import List
 
 class DatabaseAPI:
 
-    def __init__(self, db_name) -> None:
-        os.chdir(os.path.dirname(__file__))
-        self._db_name = db_name
-        self._connection = self.db_connect()
+	def __init__(self, db_name) -> None:
+		os.chdir(os.path.dirname(__file__))
+		self._db_name = db_name
+		self._connection = self.db_connect()
 
-    def db_connect(self) -> sqlite3:
-        try:
-            return sqlite3.connect(self._db_name)
-        except Exception as error:
-            raise Exception(f"[-] Error Message:\n{error}\n")
+	def db_connect(self) -> sqlite3:
+		try:
+			return sqlite3.connect(self._db_name)
+		except Exception as error:
+			raise Exception(f"[-] Error Message:\n{error}\n")
 
-    def get_all_books(self) -> List[list]:
-        cursor = self._connection.cursor()
-        response = cursor.execute(f"SELECT * FROM Books;")
-        return list(response)
+	def get_all_books(self) -> List[list]:
+		cursor = self._connection.cursor()
+		response = cursor.execute(f"SELECT * FROM Books;")
+		return list(response)
 
-    def get_book_by_id(self, id) -> List:
-        cursor = self._connection.cursor()
-        response = cursor.execute(f"SELECT * FROM Books WHERE Id = {id};")
-        return response
+	def get_book_by_id(self, id) -> List:
+		cursor = self._connection.cursor()
+		response = cursor.execute(f"SELECT * FROM Books WHERE Id = {id};")
+		return response
 
-    def insert_book(self, book_data: dict):
-        cursor = self._connection.cursor()
-        cursor.execute(f"""
-        INSERT INTO Books (title, author, description, pages)
-        VALUES ('{book_data['title']}',
-		        '{book_data['author']}',
-		        '{book_data['description']}',
-		        '{book_data['pages']}');""")
-        self._connection.commit()
+	def insert_book(self, book_data: dict):
+		cursor = self._connection.cursor()
+		cursor.execute(f"""
+		INSERT INTO Books (title, author, description, pages)
+		VALUES ('{book_data['title']}',
+				'{book_data['author']}',
+				'{book_data['description']}',
+				'{book_data['pages']}');""")
+		self._connection.commit()
 
-    def update_book(self, id: int, new_data: dict):
-        cursor = self._connection.cursor()
-        cursor.execute(f"""
-        UPDATE Books SET title = '{new_data['title']}',
-                         author = '{new_data['author']}',
-                         description = '{new_data['description']}',
-                         pages = '{new_data['pages']}'
-        WHERE Id = {id};""")
-        self._connection.commit()
+	def update_book(self, id: int, new_data: dict):
+		cursor = self._connection.cursor()
+		cursor.execute(f"""
+		UPDATE Books SET title = '{new_data['title']}',
+						 author = '{new_data['author']}',
+						 description = '{new_data['description']}',
+						 pages = '{new_data['pages']}'
+		WHERE Id = {id};""")
+		self._connection.commit()
 
-    def delete_book(self, id):
-        cursor = self._connection.cursor()
-        cursor.execute(f"""DELETE FROM Books WHERE Id = {id};""")
-        self._connection.commit()
-       
+	def delete_book(self, id):
+		cursor = self._connection.cursor()
+		cursor.execute(f"""DELETE FROM Books WHERE Id = {id};""")
+		self._connection.commit()
+	   
 
 if __name__ == "__main__":
-    databaseObj = DatabaseAPI("booksDB.db")
+	databaseObj = DatabaseAPI("booksDB.db")
 ```
 
 # Building Flask API
@@ -212,7 +212,7 @@ app = Flask(__name__)
 # Simple Endpoint to return Hello world message
 @app.route("/hello", methods=["GET"])
 def home():
-    return "Hello World!"
+	return "Hello World!"
 
 # Running your application with debugging mode on
 app.run(debug=True)
@@ -237,14 +237,14 @@ getting book from the Books table by it's passed id parameter after `books/` in 
 ```python
 @app.route("/books/<id>", methods=["GET"])
 def get_book_by_id(id: int) -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    result = list(database_api.get_book_by_id(id))
-    response = {
-        "data":{
-            "result": result[0]
-        }
-    }
-    return response
+	database_api = DatabaseAPI("booksDB.db")
+	result = list(database_api.get_book_by_id(id))
+	response = {
+		"data":{
+			"result": result[0]
+		}
+	}
+	return response
 ```
 
 ### Get all Books
@@ -254,13 +254,13 @@ the following code will handle all `GET` requests for `/books` end point and ret
 ```python
 @app.route("/books", methods=["GET"])
 def get_all_books() -> list:
-    database_api = DatabaseAPI("booksDB.db")
-    response = {
-        "data":{
-            "result": database_api.get_all_books()
-        }
-    }
-    return response
+	database_api = DatabaseAPI("booksDB.db")
+	response = {
+		"data":{
+			"result": database_api.get_all_books()
+		}
+	}
+	return response
 ```
 
 ## Handling POST requests
@@ -276,18 +276,18 @@ we load the data in JSON format to be accessible for us as a dict type. after ge
 ```python
 @app.route("/books", methods=["POST"])
 def add_new_book() -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    # Reading request body data in json format
-    request_body = json.loads(request.data.decode())
-    new_book = {
-        "title": request_body["title"],
-        "author": request_body["author"],
-        "description": request_body["description"],
-        "pages": request_body["pages"],
-    }
-    # Add book to database
-    database_api.insert_book(new_book)
-    return jsonify(new_book)
+	database_api = DatabaseAPI("booksDB.db")
+	# Reading request body data in json format
+	request_body = json.loads(request.data.decode())
+	new_book = {
+		"title": request_body["title"],
+		"author": request_body["author"],
+		"description": request_body["description"],
+		"pages": request_body["pages"],
+	}
+	# Add book to database
+	database_api.insert_book(new_book)
+	return jsonify(new_book)
 ```
 
 ## Handling PUT requests
@@ -297,18 +297,18 @@ Returning the updated record after operation done successfully. Note that we pas
 ```python
 @app.route("/books/<id>", methods=["PUT"])
 def update_book(id: int) -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    # Reading request body data in json format
-    request_body = json.loads(request.data.decode())
-    new_book = {
-        "title": request_body["title"],
-        "author": request_body["author"],
-        "description": request_body["description"],
-        "pages": request_body["pages"],
-    }
-    # Add book to database
-    database_api.update_book(id, new_book)
-    return jsonify(new_book)
+	database_api = DatabaseAPI("booksDB.db")
+	# Reading request body data in json format
+	request_body = json.loads(request.data.decode())
+	new_book = {
+		"title": request_body["title"],
+		"author": request_body["author"],
+		"description": request_body["description"],
+		"pages": request_body["pages"],
+	}
+	# Add book to database
+	database_api.update_book(id, new_book)
+	return jsonify(new_book)
 ```
 
 ## Handling DELETE requests
@@ -318,16 +318,16 @@ Deleting book by it's id then returning the deleted book record.
 ```python
 @app.route("/books/<id>", methods=["DELETE"])
 def delete_book(id: int) -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    # Reading request body data in json format
-    selected_book = list(database_api.get_book_by_id(id))
-    response = {
-        "data":{
-            "result": selected_book[0]
-        }
-    }
-    database_api.delete_book(id)
-    return response
+	database_api = DatabaseAPI("booksDB.db")
+	# Reading request body data in json format
+	selected_book = list(database_api.get_book_by_id(id))
+	response = {
+		"data":{
+			"result": selected_book[0]
+		}
+	}
+	database_api.delete_book(id)
+	return response
 ```
 
 ## Put altogether
@@ -345,72 +345,72 @@ app = Flask(__name__)
 # Simple Endpoint to return Hello world message
 @app.route("/hello", methods=["GET"])
 def home():
-    return "Hello World!"
+	return "Hello World!"
 
 @app.route("/books", methods=["GET"])
 def get_all_books() -> list:
-    database_api = DatabaseAPI("booksDB.db")
-    response = {
-        "data":{
-            "result": database_api.get_all_books()
-        }
-    }
-    return response
+	database_api = DatabaseAPI("booksDB.db")
+	response = {
+		"data":{
+			"result": database_api.get_all_books()
+		}
+	}
+	return response
 
 @app.route("/books/<id>", methods=["GET"])
 def get_book_by_id(id: int) -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    result = list(database_api.get_book_by_id(id))
-    response = {
-        "data":{
-            "result": result[0]
-        }
-    }
-    return response
+	database_api = DatabaseAPI("booksDB.db")
+	result = list(database_api.get_book_by_id(id))
+	response = {
+		"data":{
+			"result": result[0]
+		}
+	}
+	return response
 
 @app.route("/books", methods=["POST"])
 def add_new_book() -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    # Reading request body data in json format
-    request_body = json.loads(request.data.decode())
-    new_book = {
-        "title": request_body["title"],
-        "author": request_body["author"],
-        "description": request_body["description"],
-        "pages": request_body["pages"],
-    }
-    # Add book to database
-    database_api.insert_book(new_book)
-    return jsonify(new_book)
+	database_api = DatabaseAPI("booksDB.db")
+	# Reading request body data in json format
+	request_body = json.loads(request.data.decode())
+	new_book = {
+		"title": request_body["title"],
+		"author": request_body["author"],
+		"description": request_body["description"],
+		"pages": request_body["pages"],
+	}
+	# Add book to database
+	database_api.insert_book(new_book)
+	return jsonify(new_book)
 
 @app.route("/books/<id>", methods=["PUT"])
 def update_book(id: int) -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    # Reading request body data in json format
-    request_body = json.loads(request.data.decode())
-    new_book = {
-        "title": request_body["title"],
-        "author": request_body["author"],
-        "description": request_body["description"],
-        "pages": request_body["pages"],
-    }
-    # Add book to database
-    database_api.update_book(id, new_book)
-    return jsonify(new_book)
+	database_api = DatabaseAPI("booksDB.db")
+	# Reading request body data in json format
+	request_body = json.loads(request.data.decode())
+	new_book = {
+		"title": request_body["title"],
+		"author": request_body["author"],
+		"description": request_body["description"],
+		"pages": request_body["pages"],
+	}
+	# Add book to database
+	database_api.update_book(id, new_book)
+	return jsonify(new_book)
 
 @app.route("/books/<id>", methods=["DELETE"])
 def delete_book(id: int) -> str:
-    database_api = DatabaseAPI("booksDB.db")
-    # Reading request body data in json format
-    selected_book = list(database_api.get_book_by_id(id))
-    response = {
-        "data":{
-            "result": selected_book[0]
+	database_api = DatabaseAPI("booksDB.db")
+	# Reading request body data in json format
+	selected_book = list(database_api.get_book_by_id(id))
+	response = {
+		"data":{
+			"result": selected_book[0]
 
-        }
-    }
-    database_api.delete_book(id)
-    return response
+		}
+	}
+	database_api.delete_book(id)
+	return response
 
 # Running your application with debugging mode on
 app.run(debug=True)
@@ -426,10 +426,10 @@ Using the Postman application we will try and test our Implementation.
 
 ```json
 {
-  "title": "Building Powerful API Using Flask",
-  "author": "Hossam hamdy",
-  "description": "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION",
-  "pages": 100
+	"title": "Building Powerful API Using Flask",
+	"author": "Hossam hamdy",
+	"description": "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION",
+	"pages": 100
 }
 ```
 
@@ -455,10 +455,10 @@ Lets update the inserted book to be using `NodeJS` instead of python.
 
 ```json
 {
-  "title": "Building Powerful API Using NodeJS",
-  "author": "hossam hamdy",
-  "description": "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION",
-  "pages": 100
+	"title": "Building Powerful API Using NodeJS",
+	"author": "hossam hamdy",
+	"description": "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION",
+	"pages": 100
 }
 ```
 

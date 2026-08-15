@@ -72,7 +72,7 @@ modern web applications use the Token approach for authentication reasons like s
 ## What is JWTs?
 
 ```
-JWT (JSON Web Tokens) are an open, industry standard [RFC 7519] method for representing claims securely between two parties.
+JWT (JSON Web Tokens) are an open, industry standard [RFC 7519] method for representing claims securely between two parties.
 ```
 
 JWT makes it easy for the receiver to validate that the token received contains all of the information encoded by the issuer unmodified and as intended.
@@ -97,8 +97,8 @@ JWT header consists of token `type` and `algorithm` used for signing and encodin
 
 ```json
 {
-  "alg": "HS256",
-  "typ": "JWT"
+	"alg": "HS256",
+	"typ": "JWT"
 }
 ```
 
@@ -108,8 +108,8 @@ JWT Payload is also a JSON object that contains the required data to verify the 
 
 ```json
 {
-  "role": "admin",
-  "name": "Hossam Hamdy"
+	"role": "admin",
+	"name": "Hossam Hamdy"
 }
 ```
 
@@ -131,9 +131,9 @@ The **signature** is the most important part that ensures that the token hasn�
 
 ```
 HMACSHA512(
-  base64UrlEncode(header) + "." +
-  base64UrlEncode(payload),
-  secret
+	base64UrlEncode(header) + "." +
+	base64UrlEncode(payload),
+	secret
 )
 ```
 
@@ -169,10 +169,10 @@ def secret() -> str:
 	return "Ops, it's sensitive data :("
 
 def run_api(debug_mode: bool = True):
-    app.run(debug=debug_mode)
+	app.run(debug=debug_mode)
 
 if __name__ == '__main__':
-    run_api(debug_mode=True)
+	run_api(debug_mode=True)
 ```
 
 if we test this code we will find that the user can access any end point of them, what if we want to restrict the `/secret` to the authenticated users only? that is what I'm writing this post for.
@@ -187,18 +187,18 @@ SECRET_KEY = "MY-SECRET-TEXT"
 
 @app.route("/api/v3/auth", methods=["GET"])
 def api_auth():
-    """Generate the jwt auth token for the front end team members"""
-    # Reading data from request body
-    req_data = request.data.decode()
-    # getting the api-key
-    key = json.loads(req_data)["api-key"]
-    # Check if the key is correct
-    if key == API_KEY:
-	    # Generate the JWT response
-        jwt_response = generate_jwt(SECRET_KEY)
-        return jwt_response
-    elif key != API_KEY:
-        return {"data": {"message": "invalid api key", "code": 400}}
+	"""Generate the jwt auth token for the front end team members"""
+	# Reading data from request body
+	req_data = request.data.decode()
+	# getting the api-key
+	key = json.loads(req_data)["api-key"]
+	# Check if the key is correct
+	if key == API_KEY:
+		# Generate the JWT response
+		jwt_response = generate_jwt(SECRET_KEY)
+		return jwt_response
+	elif key != API_KEY:
+		return {"data": {"message": "invalid api key", "code": 400}}
 ```
 
 The `auth` end point handling GET requests at the `/api/v3/auth` path, it's receive the `api-key` from the user which is shared and check if it's correct then call the function called `generate_jwt` to handle the JWT generation we will see it's implementation after few seconds. otherwise return the `invalid api key` message.
@@ -210,18 +210,18 @@ import jwt
 import datetime
 
 def generate_jwt(secret: str) -> dict:
-    # after 3 minutes from now the jwt will be expired
-    expiration_time = datetime.datetime.utcnow()+datetime.timedelta(minutes=3)
-    # create jwt
-    token = jwt.encode({"user":"front-team", "exp": expiration_time}, secret)
-    return {
-        "data": {
-            "code": 200,
-            "message": "Your token is created successfully",
-            "token": f"{token}",
-            "expiration_at": f"{expiration_time}"
-        }
-    }
+	# after 3 minutes from now the jwt will be expired
+	expiration_time = datetime.datetime.utcnow()+datetime.timedelta(minutes=3)
+	# create jwt
+	token = jwt.encode({"user":"front-team", "exp": expiration_time}, secret)
+	return {
+		"data": {
+			"code": 200,
+			"message": "Your token is created successfully",
+			"token": f"{token}",
+			"expiration_at": f"{expiration_time}"
+		}
+	}
 ```
 
 in this function we take `secret` parameter which we will use in signing the the token as i mentioned earlier. then it calculate the expiration date and time, in this example i make it expire after 3 minutes from invocation time. after that we go to the most important part.
@@ -234,12 +234,12 @@ in this line we encode the `payload` JSON and sign it with the secret value. aft
 
 ```json
 {
-  "data": {
-    "code": 200,
-    "message": "Your token is created successfully",
-    "token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJuYW1lIjoiSG9zc2FtIEhhbWR5In0.SLzlGLkziGgyraprl69i-aSBHVI2WlkQEzs02qtKKs-NwX3l5dWKLHl_7hbCCnSQhiFroeCRkRrHzSQrYQbEqA",
-    "expiration_at": "Date Time"
-  }
+	"data": {
+	"code": 200,
+	"message": "Your token is created successfully",
+	"token": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJuYW1lIjoiSG9zc2FtIEhhbWR5In0.SLzlGLkziGgyraprl69i-aSBHVI2WlkQEzs02qtKKs-NwX3l5dWKLHl_7hbCCnSQhiFroeCRkRrHzSQrYQbEqA",
+	"expiration_at": "Date Time"
+	}
 }
 ```
 
@@ -254,30 +254,30 @@ import json
 from flask import Flask, request, jsonify
 
 def token_required(func):
-    """Function to validate the passed token in the HTTP request"""
+	"""Function to validate the passed token in the HTTP request"""
 
-    @wraps(func)
-    def decorated(*args, **kwargs):
-        payload = request.data
-        if len(payload) == 0:
-            return jsonify({'Alert!': 'Token is missing!'}), 401
-        else:
-            token = json.loads(payload)
-            if "token" in token.keys():
-                my_token = token["token"]
-            else:
-                return jsonify({'Alert!': 'Token is missing!'}), 401
-        try:
-            # Token is valid and can access the endpoint
-            data = jwt.decode(my_token, SECRET_KEY, algorithms=['HS256'])
-            # Don't do anything here.
-            # That will make the request pass to the wrapped path
+	@wraps(func)
+	def decorated(*args, **kwargs):
+		payload = request.data
+		if len(payload) == 0:
+			return jsonify({'Alert!': 'Token is missing!'}), 401
+		else:
+			token = json.loads(payload)
+			if "token" in token.keys():
+				my_token = token["token"]
+			else:
+				return jsonify({'Alert!': 'Token is missing!'}), 401
+		try:
+			# Token is valid and can access the endpoint
+			data = jwt.decode(my_token, SECRET_KEY, algorithms=['HS256'])
+			# Don't do anything here.
+			# That will make the request pass to the wrapped path
 
-        except Exception as error_message:
-            # We Have error here
-            return jsonify({'Message': 'Invalid token'}), 403
-        return func(*args, **kwargs)
-    return decorated
+		except Exception as error_message:
+			# We Have error here
+			return jsonify({'Message': 'Invalid token'}), 403
+		return func(*args, **kwargs)
+	return decorated
 ```
 
 if it's your first time to see function wrap in python here is a useful resource for it [Function Wrappers in Python](https://www.codespeedy.com/function-wrappers-in-python/). In this code samples we wrap the `decorated` function that holds the authentication logic, with this technique we can annotate any function in our application with `@token_required` to validate the the passed token before performing the request operations. it's start by getting the `token` from the request body and then check for three probabilities:
@@ -305,75 +305,75 @@ app = Flask(__name__)
 SECRET_KEY = "My-Secret-Key"
 
 def generate_jwt(secret: str) -> dict:
-    # after 3 minutes
-    expiration_time = datetime.datetime.utcnow()+datetime.timedelta(minutes=3)
-    # create jwt
-    token = jwt.encode({"user": "Taro-Team", "exp": expiration_time}, secret)
-    return {
-        "data": {
-            "code": 200,
-            "message": "Your token is created successfully",
-            "token": f"{token}",
-            "expiration_at": f"{expiration_time}"
-        }
-    }
+	# after 3 minutes
+	expiration_time = datetime.datetime.utcnow()+datetime.timedelta(minutes=3)
+	# create jwt
+	token = jwt.encode({"user": "Taro-Team", "exp": expiration_time}, secret)
+	return {
+		"data": {
+			"code": 200,
+			"message": "Your token is created successfully",
+			"token": f"{token}",
+			"expiration_at": f"{expiration_time}"
+		}
+	}
 
 
 def token_required(func):
-    """Function to validate the passed token in the HTTP request"""
+	"""Function to validate the passed token in the HTTP request"""
 
-    @wraps(func)
-    def decorated(*args, **kwargs):
-        payload = request.data
-        if len(payload) == 0:
-            return jsonify({'Alert!': 'Token is missing!'}), 401
-        else:
-            token = json.loads(payload)
-            if "token" in token.keys():
-                my_token = token["token"]
-            else:
-                return jsonify({'Alert!': 'Token is missing!'}), 401
-        try:
-            # Token is valid and can access the endpoint
-            data = jwt.decode(my_token, SECRET_KEY, algorithms=['HS256'])
-            # Don't do anything here.
-            # That will make the request pass to the wrapped path
+	@wraps(func)
+	def decorated(*args, **kwargs):
+		payload = request.data
+		if len(payload) == 0:
+			return jsonify({'Alert!': 'Token is missing!'}), 401
+		else:
+			token = json.loads(payload)
+			if "token" in token.keys():
+				my_token = token["token"]
+			else:
+				return jsonify({'Alert!': 'Token is missing!'}), 401
+		try:
+			# Token is valid and can access the endpoint
+			data = jwt.decode(my_token, SECRET_KEY, algorithms=['HS256'])
+			# Don't do anything here.
+			# That will make the request pass to the wrapped path
 
-        except Exception as error_message:
-            # We Have error here
-            return jsonify({'Message': 'Invalid token'}), 403
-        return func(*args, **kwargs)
-    return decorated
+		except Exception as error_message:
+			# We Have error here
+			return jsonify({'Message': 'Invalid token'}), 403
+		return func(*args, **kwargs)
+	return decorated
 
 
 @app.route("/api/v3/auth", methods=["GET"])
 def api_auth():
-    """Generate the jwt auth token for the front end team members"""
-    # Reading data from request body
-    req_data = request.data.decode()
-    key = json.loads(req_data)["api-key"]
-    if key == API_KEY:
-        jwt_response = generate_jwt(SECRET_KEY)
-        return jwt_response
-    elif key != API_KEY:
-        return {"data": {"message": "invalid api key", "code": 400}}
+	"""Generate the jwt auth token for the front end team members"""
+	# Reading data from request body
+	req_data = request.data.decode()
+	key = json.loads(req_data)["api-key"]
+	if key == API_KEY:
+		jwt_response = generate_jwt(SECRET_KEY)
+		return jwt_response
+	elif key != API_KEY:
+		return {"data": {"message": "invalid api key", "code": 400}}
 
 @app.route("/api/v3/home", methods=["GET"])
 def home() -> str:
-    return "hello world"
+	return "hello world"
 
 
 @app.route("/api/v3/secret", methods=["GET"])
 def secret() -> str:
-    return "Ops, it's sensitive data :("
+	return "Ops, it's sensitive data :("
 
 
 def run_api(debug_mode: bool = True):
-    app.run(debug=debug_mode)  
+	app.run(debug=debug_mode)  
 
 
 if __name__ == '__main__':
-    run_api(debug_mode=True)
+	run_api(debug_mode=True)
 ```
 
 Now, lets try to access `/secret` endpoint with postman like the image below:
@@ -386,7 +386,7 @@ as you can see nothing happened we still can access the `/secret` endpoint, that
 @token_required
 @app.route("/api/v3/secret", methods=["GET"])
 def secret() -> str:
-    return "Opps, it's sensitive data :("
+	return "Opps, it's sensitive data :("
 ```
 
 lets try again and check if we can access this anymore.
@@ -397,7 +397,7 @@ we can't access this endpoint without providing the token, now lets try to gener
 
 ```json
 {
-  "api-key": "testKey"
+	"api-key": "testKey"
 }
 ```
 

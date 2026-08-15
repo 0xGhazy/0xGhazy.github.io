@@ -89,8 +89,8 @@ pytesseract.pytesseract.tesseract_cmd ='C:/Program Files (x86)/Tesseract-OCR/tes
 result = pytesseract.image_to_string(img)
 # write text in a text file and save it to source path
 with open('abc.txt',mode ='w') as file:
-    file.write(result)
-    print(result)
+	file.write(result)
+	print(result)
 p = Translator()
 ```
 
@@ -173,16 +173,16 @@ SUBJECT="Email from Server Login: SSH Alert"
 BODY="
 A SSH login was detected.
 
-        User:        $PAM_USER
-        User IP Host: $PAM_RHOST
-        Service:     $PAM_SERVICE
-        TTY:         $PAM_TTY
-        Date:        `date`
-        Server:      `uname -a`
+		User:        $PAM_USER
+		User IP Host: $PAM_RHOST
+		Service:     $PAM_SERVICE
+		TTY:         $PAM_TTY
+		Date:        `date`
+		Server:      `uname -a`
 "
 
 if [ ${PAM_TYPE} = "open_session" ]; then
-        echo "Subject:${SUBJECT} ${BODY}" | /usr/sbin/sendmail ${RECIPIENT}
+		echo "Subject:${SUBJECT} ${BODY}" | /usr/sbin/sendmail ${RECIPIENT}
 fi
 ```
 

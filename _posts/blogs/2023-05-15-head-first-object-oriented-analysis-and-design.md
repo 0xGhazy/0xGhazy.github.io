@@ -48,27 +48,27 @@ Suppose we have this code snippet for a `Guitar` class that represents a real gu
 ```java
 @Data
 @AllArgsConstructor
-public class Guitar {  
-    private String serialNumber;
-    private double price;
-    private Builder builder;
-    private String model;
-    private Type type;
-    private Wood backWood;
-    private Wood topWood;
- }
+public class Guitar {  
+	private String serialNumber;
+	private double price;
+	private Builder builder;
+	private String model;
+	private Type type;
+	private Wood backWood;
+	private Wood topWood;
+ }
 ```
 
 Our client needs to be able to search for a guitar that meet the store client specification, Lets implement method that does our client search operation and suppose its `Guitar search(Guitar guitar)`
 
 ```java
 public class Inventory {
-    private List guitars;
+	private List guitars;
 
 	public Inventory() { guitars = new LinkedList(); }
 
 	public void addGuitar(String serialNumber, double price, String builder, String model,
-						  String type, String backWood, String topWood) {
+							String type, String backWood, String topWood) {
 		Guitar guitar = new Guitar(serialNumber, price, builder, model, type, backWood, topWood);
 		guitars.add(guitar);
 	}
@@ -166,40 +166,40 @@ Example of `Wood` enum:
 
 ```java
 public enum Wood {
-    INDIAN_ROSEWOOD,
-    BRAZILIAN_ROSEWOOD,
-    MAHOGANY,
-    MAPLE,
-    COCOBOLO,
-    CEDAR,
-    ADIRONDACK,
-    ALDER,
-    SITKA;
+	INDIAN_ROSEWOOD,
+	BRAZILIAN_ROSEWOOD,
+	MAHOGANY,
+	MAPLE,
+	COCOBOLO,
+	CEDAR,
+	ADIRONDACK,
+	ALDER,
+	SITKA;
 
-    public String toString() {
-        switch (this) {
-            case INDIAN_ROSEWOOD:
-                return "Indian Rosewood";
-            case BRAZILIAN_ROSEWOOD:
-                return "Brazilian Rosewood";
-            case MAHOGANY:
-                return "Mahogany";
-            case MAPLE:
-                return "Maple";
-            case COCOBOLO:
-                return "Cocobolo";
-            case CEDAR:
-                return "Cedar";
-            case ADIRONDACK:
-                return "Adirondack";
-            case ALDER:
-                return "Alder";
-            case SITKA:
-                return "Sitka";
-            default:
-                throw new IllegalArgumentException();
-        }
-    }
+	public String toString() {
+		switch (this) {
+			case INDIAN_ROSEWOOD:
+				return "Indian Rosewood";
+			case BRAZILIAN_ROSEWOOD:
+				return "Brazilian Rosewood";
+			case MAHOGANY:
+				return "Mahogany";
+			case MAPLE:
+				return "Maple";
+			case COCOBOLO:
+				return "Cocobolo";
+			case CEDAR:
+				return "Cedar";
+			case ADIRONDACK:
+				return "Adirondack";
+			case ALDER:
+				return "Alder";
+			case SITKA:
+				return "Sitka";
+			default:
+				throw new IllegalArgumentException();
+		}
+	}
 }
 ```
 
@@ -213,33 +213,33 @@ The new Guitar Class code:
 @Data
 @AllArgsConstructor
 public class Guitar {
-    private String serialNumber;
-    private double price;
-    // each guitar object must have a GuitarSpec object to describe it.
-    private GuitarSpec guitarSpec;
+	private String serialNumber;
+	private double price;
+	// each guitar object must have a GuitarSpec object to describe it.
+	private GuitarSpec guitarSpec;
 }
 ```
 
 The GuitarSpec Class code
 
 ```java
-public class GuitarSpec {  
-    private Builder builder;  
-    private String model;  
-    private Type type;  
-    private Wood backWood;  
-    private Wood topWood;  
-    public Builder getBuilder() {return builder;}  
-    public void setBuilder(Builder builder) {this.builder = builder;}  
-    public String getModel() {return model;}  
-    public void setModel(String model) {this.model = model;}  
-    public Type getType() {return type;}  
-    public void setType(Type type) {this.type = type;}  
-    public Wood getBackWood() {return backWood;}  
-    public void setBackWood(Wood backWood) {this.backWood = backWood;}  
-    public Wood getTopWood() {return topWood;}  
-    public void setTopWood(Wood topWood) {this.topWood = topWood;}  
- }
+public class GuitarSpec {  
+	private Builder builder;  
+	private String model;  
+	private Type type;  
+	private Wood backWood;  
+	private Wood topWood;  
+	public Builder getBuilder() {return builder;}  
+	public void setBuilder(Builder builder) {this.builder = builder;}  
+	public String getModel() {return model;}  
+	public void setModel(String model) {this.model = model;}  
+	public Type getType() {return type;}  
+	public void setType(Type type) {this.type = type;}  
+	public Wood getBackWood() {return backWood;}  
+	public void setBackWood(Wood backWood) {this.backWood = backWood;}  
+	public Wood getTopWood() {return topWood;}  
+	public void setTopWood(Wood topWood) {this.topWood = topWood;}  
+ }
 ```
 
 The new search method code:
@@ -250,8 +250,8 @@ public Guitar search(Guitar searchGuitar) {
 		Guitar guitar = (Guitar)i.next();
 		// Ignore serial number since that’s unique
 		// Ignore price since that’s unique
-        if (searchGuitar.getBuilder() != guitar.getBuilder())
-            continue;
+		if (searchGuitar.getBuilder() != guitar.getBuilder())
+			continue;
 
 		String model = searchGuitar.getModel().toLowerCase();
 		if ((model != null) && (!model.equals("")) && (!model.equals(guitar.getModel().toLowerCase())))

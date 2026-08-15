@@ -133,17 +133,17 @@ there is hidden content in the blog. and it is powered by WordPress so I'll scan
 ┌──(kali㉿kali)-[~/Desktop/my-files]
 └─$ wpscan --url http://office.paper/
 _______________________________________________________________
-         __          _______   _____
-         \ \        / /  __ \ / ____|
-          \ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
-           \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
-            \  /\  /  | |     ____) | (__| (_| | | | |
-             \/  \/   |_|    |_____/ \___|\__,_|_| |_|
+		 __          _______   _____
+		 \ \        / /  __ \ / ____|
+					\ \  /\  / /| |__) | (___   ___  __ _ _ __ ®
+		   \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \
+			\  /\  /  | |     ____) | (__| (_| | | | |
+			 \/  \/   |_|    |_____/ \___|\__,_|_| |_|
 
-         WordPress Security Scanner by the WPScan Team
-                         Version 3.8.20
-       Sponsored by Automattic - https://automattic.com/
-       @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
+		 WordPress Security Scanner by the WPScan Team
+						 Version 3.8.20
+	   Sponsored by Automattic - https://automattic.com/
+	   @_WPScan_, @ethicalhack3r, @erwan_lr, @firefart
 _______________________________________________________________
 
 [+] URL: http://office.paper/ [10.10.11.143]
@@ -255,7 +255,7 @@ And finally, we get a password maybe-I'm from the future and I wanna say it's ac
 The authenticity of host 'office.paper (10.10.11.143)' can't be established.
 ED25519 key fingerprint is SHA256:9utZz963ewD/13oc9IYzRXf6sUEX4xOe/iUaMPTFInQ.
 This host key is known by the following other names/addresses:
-    ~/.ssh/known_hosts:11: [hashed name]
+	~/.ssh/known_hosts:11: [hashed name]
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added 'office.paper' (ED25519) to the list of known hosts.
 dwight@office.paper's password:

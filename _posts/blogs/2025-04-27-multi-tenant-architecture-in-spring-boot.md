@@ -282,55 +282,55 @@ In this example, I'll use the following:
 
 ```
    core
-    │   .gitattributes
-    │   .gitignore
-    │   HELP.md
-    │   mvnw
-    │   mvnw.cmd
-    │   pom.xml
-    │
-    ├───src
-    │   └───main
-    │       ├───java
-    │       │   └───com
-    │       │       └───tenants
-    │       │           └───core
-    │       │               │   CoreApplication.java
-    │       │               │
-    │       │               ├───config
-    │       │               │       HibernateMultiTenantConfig.java
-    │       │               │       MultiTenantProvider.java
-    │       │               │       SchemaResolver.java
-    │       │               │       TenantFilter.java
-    │       │               │
-    │       │               ├───controller
-    │       │               │       InvoiceController.java
-    │       │               │
-    │       │               ├───dto
-    │       │               │       ResponseError.java
-    │       │               │
-    │       │               ├───entity
-    │       │               │       Invoice.java
-    │       │               │       Tenant.java
-    │       │               │
-    │       │               ├───exception
-    │       │               │       BadRequest.java
-    │       │               │       ExceptionAdvisor.java
-    │       │               │
-    │       │               ├───repository
-    │       │               │       InvoiceRepository.java
-    │       │               │       TenantRepository.java
-    │       │               │
-    │       │               └───service
-    │       │                       InvoiceService.java
-    │       │                       TenantService.java
-    │       │
-    │       └───resources
-    │           │   application.properties
-    │           │
-    │           ├───static
-    │           └───templates
-  .....
+	│   .gitattributes
+	│   .gitignore
+	│   HELP.md
+	│   mvnw
+	│   mvnw.cmd
+	│   pom.xml
+	│
+	├───src
+	│   └───main
+	│       ├───java
+	│       │   └───com
+	│       │       └───tenants
+	│       │           └───core
+	│       │               │   CoreApplication.java
+	│       │               │
+	│       │               ├───config
+	│       │               │       HibernateMultiTenantConfig.java
+	│       │               │       MultiTenantProvider.java
+	│       │               │       SchemaResolver.java
+	│       │               │       TenantFilter.java
+	│       │               │
+	│       │               ├───controller
+	│       │               │       InvoiceController.java
+	│       │               │
+	│       │               ├───dto
+	│       │               │       ResponseError.java
+	│       │               │
+	│       │               ├───entity
+	│       │               │       Invoice.java
+	│       │               │       Tenant.java
+	│       │               │
+	│       │               ├───exception
+	│       │               │       BadRequest.java
+	│       │               │       ExceptionAdvisor.java
+	│       │               │
+	│       │               ├───repository
+	│       │               │       InvoiceRepository.java
+	│       │               │       TenantRepository.java
+	│       │               │
+	│       │               └───service
+	│       │                       InvoiceService.java
+	│       │                       TenantService.java
+	│       │
+	│       └───resources
+	│           │   application.properties
+	│           │
+	│           ├───static
+	│           └───templates
+	.....
 ```
 
 #### Database structure
@@ -375,79 +375,79 @@ CREATE SCHEMA IF NOT EXISTS voda_schema;
 
 -- Tenants table in tenant_management schema
 CREATE TABLE tenant_management.tenants (
-    id UUID PRIMARY KEY,
-    name VARCHAR(255),
-    schema_name VARCHAR(255),
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP
+	id UUID PRIMARY KEY,
+	name VARCHAR(255),
+	schema_name VARCHAR(255),
+	created_at TIMESTAMP,
+	updated_at TIMESTAMP
 );
 
 -- Invoices table in tenant-specific schema
 CREATE TABLE orange_schema.invoices (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    amount NUMERIC(10, 2) NOT NULL,
-    note VARCHAR(255),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	amount NUMERIC(10, 2) NOT NULL,
+	note VARCHAR(255),
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE we_schema.invoices (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    amount NUMERIC(10, 2) NOT NULL,
-    note VARCHAR(255),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	amount NUMERIC(10, 2) NOT NULL,
+	note VARCHAR(255),
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE voda_schema.invoices (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    amount NUMERIC(10, 2) NOT NULL,
-    note VARCHAR(255),
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+	id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+	amount NUMERIC(10, 2) NOT NULL,
+	note VARCHAR(255),
+	created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insert tenants into tenant_management.tenants
 INSERT INTO tenant_management.tenants (id, name, schema_name, created_at, updated_at) VALUES
-    (gen_random_uuid(), 'Orange', 'orange_schema', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(), 'WE', 'we_schema', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-    (gen_random_uuid(), 'Vodafone', 'voda_schema', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+	(gen_random_uuid(), 'Orange', 'orange_schema', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+	(gen_random_uuid(), 'WE', 'we_schema', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+	(gen_random_uuid(), 'Vodafone', 'voda_schema', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- Insert 10 invoices into orange_schema
 INSERT INTO orange_schema.invoices (id, amount, note) VALUES
-    (gen_random_uuid(), 100.00, 'Orange-Invoice 1'),
-    (gen_random_uuid(), 150.00, 'Orange-Invoice 2'),
-    (gen_random_uuid(), 200.00, 'Orange-Invoice 3'),
-    (gen_random_uuid(), 250.00, 'Orange-Invoice 4'),
-    (gen_random_uuid(), 300.00, 'Orange-Invoice 5'),
-    (gen_random_uuid(), 120.00, 'Orange-Invoice 6'),
-    (gen_random_uuid(), 130.00, 'Orange-Invoice 7'),
-    (gen_random_uuid(), 170.00, 'Orange-Invoice 8'),
-    (gen_random_uuid(), 180.00, 'Orange-Invoice 9'),
-    (gen_random_uuid(), 190.00, 'Orange-Invoice 10');
+	(gen_random_uuid(), 100.00, 'Orange-Invoice 1'),
+	(gen_random_uuid(), 150.00, 'Orange-Invoice 2'),
+	(gen_random_uuid(), 200.00, 'Orange-Invoice 3'),
+	(gen_random_uuid(), 250.00, 'Orange-Invoice 4'),
+	(gen_random_uuid(), 300.00, 'Orange-Invoice 5'),
+	(gen_random_uuid(), 120.00, 'Orange-Invoice 6'),
+	(gen_random_uuid(), 130.00, 'Orange-Invoice 7'),
+	(gen_random_uuid(), 170.00, 'Orange-Invoice 8'),
+	(gen_random_uuid(), 180.00, 'Orange-Invoice 9'),
+	(gen_random_uuid(), 190.00, 'Orange-Invoice 10');
 
 -- Insert 10 invoices into we_schema
 INSERT INTO we_schema.invoices (id, amount, note) VALUES
-    (gen_random_uuid(), 105.00, 'We-Invoice 1'),
-    (gen_random_uuid(), 155.00, 'We-Invoice 2'),
-    (gen_random_uuid(), 205.00, 'We-Invoice 3'),
-    (gen_random_uuid(), 255.00, 'We-Invoice 4'),
-    (gen_random_uuid(), 305.00, 'We-Invoice 5'),
-    (gen_random_uuid(), 125.00, 'We-Invoice 6'),
-    (gen_random_uuid(), 135.00, 'We-Invoice 7'),
-    (gen_random_uuid(), 175.00, 'We-Invoice 8'),
-    (gen_random_uuid(), 185.00, 'We-Invoice 9'),
-    (gen_random_uuid(), 195.00, 'We-Invoice 10');
+	(gen_random_uuid(), 105.00, 'We-Invoice 1'),
+	(gen_random_uuid(), 155.00, 'We-Invoice 2'),
+	(gen_random_uuid(), 205.00, 'We-Invoice 3'),
+	(gen_random_uuid(), 255.00, 'We-Invoice 4'),
+	(gen_random_uuid(), 305.00, 'We-Invoice 5'),
+	(gen_random_uuid(), 125.00, 'We-Invoice 6'),
+	(gen_random_uuid(), 135.00, 'We-Invoice 7'),
+	(gen_random_uuid(), 175.00, 'We-Invoice 8'),
+	(gen_random_uuid(), 185.00, 'We-Invoice 9'),
+	(gen_random_uuid(), 195.00, 'We-Invoice 10');
 
 -- Insert 10 invoices into voda_schema
 INSERT INTO voda_schema.invoices (id, amount, note) VALUES
-    (gen_random_uuid(), 110.00, 'Vodafone-Invoice 1'),
-    (gen_random_uuid(), 160.00, 'Vodafone-Invoice 2'),
-    (gen_random_uuid(), 210.00, 'Vodafone-Invoice 3'),
-    (gen_random_uuid(), 260.00, 'Vodafone-Invoice 4'),
-    (gen_random_uuid(), 310.00, 'Vodafone-Invoice 5'),
-    (gen_random_uuid(), 130.00, 'Vodafone-Invoice 6'),
-    (gen_random_uuid(), 140.00, 'Vodafone-Invoice 7'),
-    (gen_random_uuid(), 180.00, 'Vodafone-Invoice 8'),
-    (gen_random_uuid(), 190.00, 'Vodafone-Invoice 9'),
-    (gen_random_uuid(), 200.00, 'Vodafone-Invoice 10');
+	(gen_random_uuid(), 110.00, 'Vodafone-Invoice 1'),
+	(gen_random_uuid(), 160.00, 'Vodafone-Invoice 2'),
+	(gen_random_uuid(), 210.00, 'Vodafone-Invoice 3'),
+	(gen_random_uuid(), 260.00, 'Vodafone-Invoice 4'),
+	(gen_random_uuid(), 310.00, 'Vodafone-Invoice 5'),
+	(gen_random_uuid(), 130.00, 'Vodafone-Invoice 6'),
+	(gen_random_uuid(), 140.00, 'Vodafone-Invoice 7'),
+	(gen_random_uuid(), 180.00, 'Vodafone-Invoice 8'),
+	(gen_random_uuid(), 190.00, 'Vodafone-Invoice 9'),
+	(gen_random_uuid(), 200.00, 'Vodafone-Invoice 10');
 ```
 
 I have added the `note` column and inserted the schema name into it to make it easier to identify where each invoice comes from.
@@ -466,8 +466,8 @@ Here is the `pom.xml` example
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project 
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -583,27 +583,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class SchemaResolver implements CurrentTenantIdentifierResolver {
 
-    private static final String DEFAULT_TENANT = "public";
+	private static final String DEFAULT_TENANT = "public";
 
-    private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
+	private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
 
-    public static void setTenant(String tenantSchema) {
-        currentTenant.set(tenantSchema);
-    }
+	public static void setTenant(String tenantSchema) {
+		currentTenant.set(tenantSchema);
+	}
 
-    public static void clear() {
-        currentTenant.remove();
-    }
+	public static void clear() {
+		currentTenant.remove();
+	}
 
-    @Override
-    public String resolveCurrentTenantIdentifier() {
-        return currentTenant.get() != null ? currentTenant.get() : DEFAULT_TENANT;
-    }
+	@Override
+	public String resolveCurrentTenantIdentifier() {
+		return currentTenant.get() != null ? currentTenant.get() : DEFAULT_TENANT;
+	}
 
-    @Override
-    public boolean validateExistingCurrentSessions() {
-        return true;
-    }
+	@Override
+	public boolean validateExistingCurrentSessions() {
+		return true;
+	}
 }
 ```
 
@@ -616,15 +616,15 @@ In the `SchemaResolver` class, we implement the **[CurrentTenantIdentifierResolv
 This allows Hibernate to switch between schemas per request dynamically, based on the current tenant.
 
 ```java
-    private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
+	private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
 
-    public static void setTenant(String tenantSchema) {
-        currentTenant.set(tenantSchema);
-    }
+	public static void setTenant(String tenantSchema) {
+		currentTenant.set(tenantSchema);
+	}
 
-    public static void clear() {
-        currentTenant.remove();
-    }
+	public static void clear() {
+		currentTenant.remove();
+	}
 ```
 
 Additionally, we have added two helper methods to set and clear the current tenant. But why do we use `ThreadLocal<String>` instead of a simple `String`?
@@ -649,48 +649,48 @@ import java.sql.SQLException;
 @Component
 public class MultiTenantProvider implements MultiTenantConnectionProvider {
 
-    private final DataSource dataSource;
+	private final DataSource dataSource;
 
-    public MultiTenantProvider(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+	public MultiTenantProvider(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
 
-    @Override
-    public Connection getAnyConnection() throws SQLException {
-        return dataSource.getConnection();
-    }
+	@Override
+	public Connection getAnyConnection() throws SQLException {
+		return dataSource.getConnection();
+	}
 
-    @Override
-    public void releaseAnyConnection(Connection connection) throws SQLException {
-        connection.close();
-    }
+	@Override
+	public void releaseAnyConnection(Connection connection) throws SQLException {
+		connection.close();
+	}
 
-    @Override
-    public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException {
-        connection.close();
-    }
+	@Override
+	public void releaseConnection(String tenantIdentifier, Connection connection) throws SQLException {
+		connection.close();
+	}
 
-    @Override
-    public Connection getConnection(String tenantIdentifier) throws SQLException {
-        Connection connection = dataSource.getConnection();
-        connection.setSchema(tenantIdentifier);
-        return connection;
-    }
+	@Override
+	public Connection getConnection(String tenantIdentifier) throws SQLException {
+		Connection connection = dataSource.getConnection();
+		connection.setSchema(tenantIdentifier);
+		return connection;
+	}
 
-    @Override
-    public boolean supportsAggressiveRelease() {
-        return false;
-    }
+	@Override
+	public boolean supportsAggressiveRelease() {
+		return false;
+	}
 
-    @Override
-    public boolean isUnwrappableAs(Class<?> unwrapType) {
-        return false;
-    }
+	@Override
+	public boolean isUnwrappableAs(Class<?> unwrapType) {
+		return false;
+	}
 
-    @Override
-    public <T> T unwrap(Class<T> unwrapType) {
-        return null;
-    }
+	@Override
+	public <T> T unwrap(Class<T> unwrapType) {
+		return null;
+	}
 }
 ```
 
@@ -726,28 +726,28 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class HibernateMultiTenantConfig {
 
-    private final DataSource dataSource;
+	private final DataSource dataSource;
 
-    private final MultiTenantProvider multiTenantProvider;
+	private final MultiTenantProvider multiTenantProvider;
 
-    private final SchemaResolver schemaResolver;
+	private final SchemaResolver schemaResolver;
 
-    @Value("${hibernate.entity.package}")
-    private String entityPackage;
+	@Value("${hibernate.entity.package}")
+	private String entityPackage;
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
-        Map<String, Object> properties = new HashMap<>();
+	@Bean
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(EntityManagerFactoryBuilder builder) {
+		Map<String, Object> properties = new HashMap<>();
 
-        properties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantProvider);
-        properties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, schemaResolver);
+		properties.put(Environment.MULTI_TENANT_CONNECTION_PROVIDER, multiTenantProvider);
+		properties.put(Environment.MULTI_TENANT_IDENTIFIER_RESOLVER, schemaResolver);
 
-        return builder
-                .dataSource(dataSource)
-                .packages(entityPackage)
-                .properties(properties)
-                .build();
-    }
+		return builder
+				.dataSource(dataSource)
+				.packages(entityPackage)
+				.properties(properties)
+				.build();
+	}
 }
 ```
 
@@ -782,19 +782,19 @@ import java.util.UUID;
 @Table(name = "tenants", schema = "tenant_management")
 public class Tenant {
 
-    @Id
-    private UUID id;
+	@Id
+	private UUID id;
 
-    private String name;
+	private String name;
 
-    @Column(name = "schema_name")
-    private String schemaName;
+	@Column(name = "schema_name")
+	private String schemaName;
 
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
 }
 ```
 
@@ -820,18 +820,18 @@ import java.util.UUID;
 @Table(name = "invoices")
 public class Invoice {
 
-    @Id
-    @GeneratedValue
-    private UUID id;
+	@Id
+	@GeneratedValue
+	private UUID id;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal amount;
+	@Column(nullable = false, precision = 10, scale = 2)
+	private BigDecimal amount;
 
-    private String note;
+	private String note;
 
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+	@CreationTimestamp
+	@Column(name = "created_at", nullable = false, updatable = false)
+	private LocalDateTime createdAt;
 }
 ```
 
@@ -866,53 +866,53 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class TenantFilter implements Filter {
 
-    private final TenantService tenantService;
+	private final TenantService tenantService;
 
-    @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
 
-        try {
-            // Validate that X-Tenant-ID is present in the request header
-            String tenantId = httpRequest.getHeader("X-Tenant-ID");
-            log.info("Tenant ID={}", tenantId);
-            if (tenantId == null || tenantId.isBlank()) {
-                log.warn("Invalid or missing tenant ID, request tenant ID = [{}]", tenantId);
-                ((HttpServletResponse) response).sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid or missing tenant ID");
-                return;
-            }
+		try {
+			// Validate that X-Tenant-ID is present in the request header
+			String tenantId = httpRequest.getHeader("X-Tenant-ID");
+			log.info("Tenant ID={}", tenantId);
+			if (tenantId == null || tenantId.isBlank()) {
+				log.warn("Invalid or missing tenant ID, request tenant ID = [{}]", tenantId);
+				((HttpServletResponse) response).sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid or missing tenant ID");
+				return;
+			}
 
-            // Validate if the tenant exists
-            log.debug("Fetching tenant with ID={}", tenantId);
-            Optional<Tenant> tenantObj = tenantService.findById(UUID.fromString(tenantId));
+			// Validate if the tenant exists
+			log.debug("Fetching tenant with ID={}", tenantId);
+			Optional<Tenant> tenantObj = tenantService.findById(UUID.fromString(tenantId));
 
-            if (tenantObj.isPresent()) {
-                Tenant tenant = tenantObj.get();
-                log.info("Tenant found: {}", tenant);
-                String schemaName = tenant.getSchemaName();
+			if (tenantObj.isPresent()) {
+				Tenant tenant = tenantObj.get();
+				log.info("Tenant found: {}", tenant);
+				String schemaName = tenant.getSchemaName();
 
-                // Set schema to tenant's schema
-                SchemaResolver.setTenant(schemaName);
-                log.info("Current schema set to [{}]", schemaName);
-            } else {
-                log.warn("Tenant not found for ID={}", tenantId);
-                ((HttpServletResponse) response).sendError(HttpServletResponse.SC_NOT_FOUND, "Tenant not found");
-                return;
-            }
+				// Set schema to tenant's schema
+				SchemaResolver.setTenant(schemaName);
+				log.info("Current schema set to [{}]", schemaName);
+			} else {
+				log.warn("Tenant not found for ID={}", tenantId);
+				((HttpServletResponse) response).sendError(HttpServletResponse.SC_NOT_FOUND, "Tenant not found");
+				return;
+			}
 
-            try {
-                chain.doFilter(request, response);
-            } finally {
-                SchemaResolver.clear();
-            }
-        } catch (Exception ex) {
-            HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            httpResponse.setContentType("application/json");
-            httpResponse.getWriter().write("{\"message\": \"" + ex.getMessage() + "\", \"reason\": \"" + ex + "\"}");
-        }
-    }
+			try {
+				chain.doFilter(request, response);
+			} finally {
+				SchemaResolver.clear();
+			}
+		} catch (Exception ex) {
+			HttpServletResponse httpResponse = (HttpServletResponse) response;
+			httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			httpResponse.setContentType("application/json");
+			httpResponse.getWriter().write("{\"message\": \"" + ex.getMessage() + "\", \"reason\": \"" + ex + "\"}");
+		}
+	}
 }
 ```
 
@@ -941,25 +941,25 @@ curl --location 'http://localhost:8080/api/v1/invoices' --header 'X-Tenant-ID: 7
 
 ```json
 [
-    {
-        "id": "01fd313e-c537-4188-8ba5-161188bb3e68",
-        "amount": 110.00,
-        "note": "Voda-Invoice 1",
-        "createdAt": "2025-04-26T04:18:52.986748"
-    },
-    {
-        "id": "913687d9-9323-4829-bd83-6d0b60567ba1",
-        "amount": 160.00,
-        "note": "Voda-Invoice 2",
-        "createdAt": "2025-04-26T04:18:52.986748"
-    },
-    ...
-    {
-        "id": "fb459530-6e9e-468f-8dd9-021a9e9a9c72",
-        "amount": 200.00,
-        "note": "Voda-Invoice 10",
-        "createdAt": "2025-04-26T04:18:52.986748"
-    }
+	{
+		"id": "01fd313e-c537-4188-8ba5-161188bb3e68",
+		"amount": 110.00,
+		"note": "Voda-Invoice 1",
+		"createdAt": "2025-04-26T04:18:52.986748"
+	},
+	{
+		"id": "913687d9-9323-4829-bd83-6d0b60567ba1",
+		"amount": 160.00,
+		"note": "Voda-Invoice 2",
+		"createdAt": "2025-04-26T04:18:52.986748"
+	},
+	...
+	{
+		"id": "fb459530-6e9e-468f-8dd9-021a9e9a9c72",
+		"amount": 200.00,
+		"note": "Voda-Invoice 10",
+		"createdAt": "2025-04-26T04:18:52.986748"
+	}
 ]
 ```
 
@@ -981,25 +981,25 @@ curl --location 'http://localhost:8080/api/v1/invoices' --header 'X-Tenant-ID: d
 
 ```json
 [
-    {
-        "id": "8f19a779-1da7-444c-9387-7bcecac52494",
-        "amount": 100.00,
-        "note": "Orange-Invoice 1",
-        "createdAt": "2025-04-26T04:18:52.972146"
-    },
-    {
-        "id": "10874a95-53d0-4c2e-9f75-640e24f09548",
-        "amount": 150.00,
-        "note": "Orange-Invoice 2",
-        "createdAt": "2025-04-26T04:18:52.972146"
-    },
-    ...
-    {
-        "id": "32235794-e63a-4645-9258-a87a1116cb31",
-        "amount": 190.00,
-        "note": "Orange-Invoice 10",
-        "createdAt": "2025-04-26T04:18:52.972146"
-    }
+	{
+		"id": "8f19a779-1da7-444c-9387-7bcecac52494",
+		"amount": 100.00,
+		"note": "Orange-Invoice 1",
+		"createdAt": "2025-04-26T04:18:52.972146"
+	},
+	{
+		"id": "10874a95-53d0-4c2e-9f75-640e24f09548",
+		"amount": 150.00,
+		"note": "Orange-Invoice 2",
+		"createdAt": "2025-04-26T04:18:52.972146"
+	},
+	...
+	{
+		"id": "32235794-e63a-4645-9258-a87a1116cb31",
+		"amount": 190.00,
+		"note": "Orange-Invoice 10",
+		"createdAt": "2025-04-26T04:18:52.972146"
+	}
 ]
 ```
 
