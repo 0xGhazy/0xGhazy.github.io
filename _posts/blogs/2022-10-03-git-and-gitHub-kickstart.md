@@ -38,14 +38,14 @@ as we mentioned earlier git is a **version control system**, in a simple words i
 Git is one of the most popular **version control system** worldwide, for many reasons such as:
 
 - Git is Smart
-  When we rename files, Git will not be confused with this action and it steals know that file didn't change it's just renamed.
+  When we rename files, Git will not be confused with this action and it still knows that the file didn't change, it's just renamed.
 - Git is Fast
 - Git is Safe
-  as mentioned above git give us the ability to commit/revoke our changes, it's very useful when we have do some mistakes and want to revoke them., or in the worst case scenario if a hacker pushes mal code to the project files we can revert changes made by him to keep our project and users safe.
+  as mentioned above git give us the ability to commit/revoke our changes, it's very useful when we have made some mistakes and want to revoke them, or in the worst case scenario if a hacker pushes malicious code to the project files we can revert changes made by him to keep our project and users safe.
 
 ## Git Downsides
 
-- Git is not the best Choice for Handling Binary Files. binary files usually are big-sized so Git can't deal with these files at the same speed and quality as ASCII files (Source Code).
+- Git is not the best choice for handling binary files. binary files usually are big-sized so Git can't deal with these files at the same speed and quality as ASCII files (Source Code).
 - Does not track empty folders
 
 ## What is GitHub?

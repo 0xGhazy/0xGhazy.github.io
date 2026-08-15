@@ -57,13 +57,13 @@ when the client try to access server resources with the token, the server verify
 
 ![Pasted image 20221210063253](https://user-images.githubusercontent.com/60070427/206869757-fc31015c-b474-4ebc-a9c2-254b6a52367c.png)
 
-The Images above coped from [educative.io - Why should you use JWT's?](https://www.educative.io/answers/why-should-you-use-jwts)
+The Images above copied from [educative.io - Why should you use JWT's?](https://www.educative.io/answers/why-should-you-use-jwts)
 
 ## JWT or Sessions what should i choose?
 
-In the session based approach, the server must store the session's data to authorize the user when he try to interact with the server again, but what about if we have to communicate with another server? in this case all servers must have a copy of sessions to authorized the user request when it's sent.
+In the session based approach, the server must store the session's data to authorize the user when he tries to interact with the server again, but what about if we have to communicate with another server? in this case all servers must have a copy of sessions to authorize the user request when it's sent.
 
-In the token case, server don't need to store the token. also the token can be user in multiple servers without running into problems where one server has a certain session, and the other server doesn’t.
+In the token case, server don't need to store the token. also the token can be used in multiple servers without running into problems where one server has a certain session, and the other server doesn’t.
 
 modern web applications use the Token approach for authentication reasons like scalability and mobile device authentication.
 

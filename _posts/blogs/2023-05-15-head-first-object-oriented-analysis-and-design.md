@@ -157,8 +157,8 @@ This implementation has some issues:
 2. **Client doesn't care about the guitar `serial number` or `price`**
    The store client doesn't care about the serial number or price so he didn't provide it in the search method.
 
-**For ths issue `#1`**:
-We can solve it by using `enum` type to define our attribute types, This will prevent miss spilling, letters case, and unexpected values from the store client.
+**For this issue `#1`**:
+We can solve it by using `enum` type to define our attribute types, This will prevent misspelling, letters case, and unexpected values from the store client.
 
 For in the case of `model` we can't use Enums because models vary very much. So here we will use `toLowerCase() / toUpperCase()` instead.
 
@@ -203,9 +203,9 @@ public enum Wood {
 }
 ```
 
-**For ths issue `#2`**:
+**For this issue `#2`**:
 
-Her we can separate the guitar main attributes such as [`price`, `serial`] and guitar specifications attributes such as [`builder`, `model`, `type`, `backWood`, `topWood`].
+Here we can separate the guitar main attributes such as [`price`, `serial`] and guitar specifications attributes such as [`builder`, `model`, `type`, `backWood`, `topWood`].
 
 The new Guitar Class code:
 
