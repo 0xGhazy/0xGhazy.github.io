@@ -61,10 +61,10 @@ analytics:
   google:
     id: # fill in your Google Analytics ID
   goatcounter:
-    id: 0xghazy # fill in your GoatCounter ID
+    id: # fill in your GoatCounter ID
   umami:
-    id: # fill in your Umami ID
-    domain: # fill in your Umami domain
+    id: 88a516ca-1d5d-4c46-af68-d780baf896fc # fill in your Umami ID
+    domain: cloud.umami.is # fill in your Umami domain
   matomo:
     id: # fill in your Matomo ID
     domain: # fill in your Matomo domain
