@@ -16,7 +16,7 @@ timezone: Africa/Cairo
 
 title: Hossam Hamdy # the main title
 
-tagline: Software Engineer & Father 👨‍👦 #it will display as the subtitle
+tagline: Software Engineer & Father #it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
   Another tech blog from a software engineer
@@ -30,6 +30,9 @@ github:
 
 twitter:
   username: 0xGhazy # change to your Twitter username
+
+youtube:
+  username: 0xGhazy # change to your Youtube username
 
 social:
   # Change to your full name.
