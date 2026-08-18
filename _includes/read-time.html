@@ -1,0 +1,29 @@
+<!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+{% assign english_content = include.content | split: '<!-- ================= ARABIC CONTENT ================= -->' | first %}
+{% assign words = english_content | strip_html | number_of_words: 'auto' %}
+
+<!-- words per minute -->
+
+{% assign wpm = 180 %}
+{% assign min_time = 1 %}
+
+{% assign read_time = words | divided_by: wpm %}
+
+{% unless read_time > 0 %}
+  {% assign read_time = min_time %}
+{% endunless %}
+
+{% capture read_prompt %}
+  {{- site.data.locales[include.lang].post.read_time -}}
+{% endcapture %}
+
+{% if include.prompt %}
+  {% if read_prompt contains '%d' %}
+    {{ read_prompt | replace: '%d', read_time }}
+  {% else %}
+    {{ read_time }} {{ read_prompt }}
+  {% endif %}
+{% else %}
+  {{ read_time }}
+{% endif %}
